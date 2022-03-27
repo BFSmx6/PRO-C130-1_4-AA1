@@ -45,32 +45,34 @@ def countFingers(image, hand_landmarks, handNo=0):
         totalFingers = fingers.count(1)
         
         # PLAY or PAUSE a Video
+        if totalFingers == 4:
+            state = "Play"
+
+        if totalFingers == 0 and state == "Play":
+            state = "Pause"
+            keyboard.press(Key.space)
+
+
         
-        ################################
+        finger_tip_y = (landmarks[8].y)*height
+        if totalFingers == 2:
+            if  finger_tip_y < height-400:
+                print("Decrease Volume")
+                pyautogui.press("volumedown")
 
-             # ADD CODE HERE #
-
-        ################################
+            if finger_tip_y > height-50:
+                print("Increase volume")
+                pyautogui.press("volumeup")
         
-
-         # Move Video FORWARD & BACKWARDS 
+        # Move Video FORWARD & BACKWARDS    
+        finger_tip_x = (landmarks[8].x)*width        
          
         ################################
 
              # ADD CODE HERE #
 
         ################################ 
-        ################################
 
-        # Increase and decrease volume #
-
-        ################################ 
-        ################################
-
-             # ADD CODE HERE #
-
-        ################################ 
-        
 # Define a function to 
 def drawHandLanmarks(image, hand_landmarks):
 
